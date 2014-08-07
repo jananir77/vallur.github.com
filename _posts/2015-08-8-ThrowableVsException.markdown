@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Throwable Vs Exception which one to catch
+title: Throwable Vs Exception which one to catch?
 category: Coding
 tags: java, Exception
 year: 2014
