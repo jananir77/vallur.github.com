@@ -2,14 +2,14 @@
 layout: post
 title: How to do async journaling from your server code 
 category: Coding
-tags: 
+tags: java, journaling
 year: 2014
 month: 08
 day: 19
 published: true
 summary: I want to write journal entries or log entries of transactions to disk. I don't want the system to slow down due to logging. I want to have a rolling log and should be able to recover when some thing wrong happens. 
 
-image: post_four.png
+image: 
 ---
 Problem
 --
