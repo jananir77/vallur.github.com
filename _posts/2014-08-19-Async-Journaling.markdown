@@ -9,7 +9,7 @@ day: 19
 published: true
 summary: I want to write journal entries or log entries of transactions to disk. I don't want the system to slow down due to logging. I want to have a rolling log and should be able to recover when some thing wrong happens. 
 
-image: 
+image: java.jpg
 ---
 Problem
 ---
