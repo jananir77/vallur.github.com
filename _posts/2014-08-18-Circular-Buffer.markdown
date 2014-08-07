@@ -2,12 +2,12 @@
 layout: post
 title: Circular Buffer using arrays in java
 category: Coding
-tags: 
+tags: circular buffer, java
 year: 2014
 month: 08
 day: 18
 published: true
-summary: Circular Buffer implementation has many important usecases from logging to serialization to use fixed memory size.
+summary: Circular Buffer implementation has many important usecases from logging to serialization to use fixed memory size
 image:circularbuffer.png
 ---
 
