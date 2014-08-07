@@ -17,70 +17,7 @@ Circular Buffer using arrays in java
 
 I have seen many implementations online for implementing Circular Buffer but haven't found a clean one. To me this is a crucial functionality and has a lot of its uses in software. Hence here goes my code.
 
-```
-package vallur.datastructures.array;
-
-/**
- * Created by Narasimhan Vallur.
- *
- * Use it at your own risk. Just give me credit.
- * Also there is more where this came from and
- * i am constantly trying to fix my mistakes.
- * Comments are appreciated @ vallurn.blogspot.com
-*/
-
-package array;
-
-public class CircularBuffer<T>
-{
- public T[] m_buffer;
- int m_index = 0;
-
- public CircularBuffer(int size)
- {
-  m_buffer = new T[size];
- }
-
- public void push(T value)
- {
-  if(index<0)
-  {
-   m_buffer[0]=value;
-   index=0;
-  }
-  else
-  {
-   index++;
-   buffer[(index%(buffer.length-1))]=value;
-  }
- }
-
- public T get(int pIndex)
- {
-  int i = pIndex%(buffer.length-1);
-  if(i>m_index)
-  {
-    throw new ArrayIndexOutOfBoundsException(String.format("has only %d items",
-                                                           m_items));
-  } 
-  return buffer[i];
- }
-
- public T pop()
- {
-  if(m_index<0)
-  {
-    throw new ArrayIndexOutOfBoundsException("has 0 items");
-  }
-  return get(index--);
- }
-
- public boolean isEmpty()
- {
-  return (index<0);
- }
-}
-```
+<script src="https://gist.github.com/vallur/cfe0f9fd94f99fe8c63e.js"></script>
 
 Now you had seen the code here you can see where this can be used. The most commonly used place is logging where the system wants to allocate only certain amount of memory or maintain one hour worth of log data. If your system supports 1000,000 log entries per minute then you would want your array size to support 60 mins worth of data to be 60,000,000. If we don't use a fixed buffer that can be used continuously for a short span of time we would be putting lot of stress on JVM to allocate and free memory. You will be seeing me using this approach in coding for various other types through the blog. 
 
