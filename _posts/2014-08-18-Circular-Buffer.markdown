@@ -8,7 +8,8 @@ month: 08
 day: 18
 published: true
 summary: Circular Buffer implementation has many important usecases from logging to serialization to use fixed memory size
-image:circularbuffer.png
+
+image: circularbuffer.png
 ---
 
 I have seen many implementations online for implementing Circular Buffer but haven't found a clean one. To me this is a crucial functionality and has a lot of its uses in software. Hence here goes my code.
