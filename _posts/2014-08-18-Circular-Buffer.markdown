@@ -11,7 +11,6 @@ summary: Circular Buffer implementation has many important usecases from logging
 
 image: post_four.png
 ---
-
 Circular Buffer using arrays in java
 ====================================
 
