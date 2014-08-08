@@ -6,7 +6,7 @@ tags: java, GarbageCollection, JVM
 year: 2014
 month: 08
 day: 8
-published: false
+published: true
 summary: When we work with java we need to know JVM and how it collects garbage.
 
 image: java.jpg
@@ -21,23 +21,29 @@ Code for SimpleThreadPool can be found here.
 
 I wrote this code to see the behavior of GC with different options. With just this option ```-Xms4m -Xmx4m``` the memory foot print becomes like the below
 
-image1
+![The Bad](/https://github.com/vallur/vallur.github.com/blob/master/img/posts/jvm1.png)
 
 with the option -XX:+UseConcMarkSweepGC option the image becomes like
 
-image 2
+![The Good](/https://github.com/vallur/vallur.github.com/blob/master/img/posts/jvm4.png)
 
 The difference is mostly like asking the kids to cleanup the mess at the end of the day vs immediately when they make it. The later is better while writing enterprise level applications to avoid stop the world garbage collectors. It is also preferable to write code that gives less garbage wherever it is possible topic for another time.
 
-The effect on CPU and garbage without -XX:+UseConcMarkSweepGC is given below when we tweak the variable  MEMORY_MIN_THRESHOLD=100; instead of 3 and  set the vm option to -Xms4000m -Xmx4000m. Now I made the GC kicking and and spend more time in this case more than 37% of the CPU 
+The effect on CPU and garbage without -XX:+UseConcMarkSweepGC is given below when we tweak the variable  ```MEMORY_MIN_THRESHOLD=100;``` instead of 3 and  set the vm option to ```-Xms4000m -Xmx4000m```. Now I made the GC kicking and and spend more time in this case more than 37% of the CPU 
 
-image 3
+![The UGLY](/https://github.com/vallur/vallur.github.com/blob/master/img/posts/jvm3.png)
 
-The high CPU is due to the locks caused by LinkedBlockingQueue trying to run the threads in a tight loop apart from the GC trying to free up memory. Don't do this in your code. and oh my god more than 90% CPU and the system is choking hard what do I do?.
+The high CPU is due to the locks caused by ```LinkedBlockingQueue``` trying to run the threads in a tight loop apart from the GC trying to free up memory. Don't do this in your code. and oh my god more than 90% CPU and the system is choking hard what do I do?.
 
-I tried -XX:+UseConcMarkSweepGC -XX:ConcGCThreads=4 and ran the application again i got the below result
+I tried ```-XX:+UseConcMarkSweepGC -XX:ConcGCThreads=4``` and ran the application again i got the below result
 
-image 4
+![The UGLY](/https://github.com/vallur/vallur.github.com/blob/master/img/posts/jvm2.png)
+
+This is slightly better than the above but still bad due to the CPU spikes. The time on GC is less than 10% of CPU which is better than the previous result. 
+
+So i tried experimenting with  -XX:+UseParallelGC -XX:MaxGCPauseMillis=1 -XX:ParallelGCThreads=4
+
+![The UGLY](/https://github.com/vallur/vallur.github.com/blob/master/img/posts/jvm5.png)
 
 The GC is happening more frequently and the CPU spent on GC is less than 10% and total CPU spike is less than 50 % much better picture.
 
