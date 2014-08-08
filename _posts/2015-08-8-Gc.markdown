@@ -25,25 +25,25 @@ I wrote this code to see the behavior of GC with different options. With just th
 
 with the option -XX:+UseConcMarkSweepGC option the image becomes like
 
-![The Good](/https://github.com/vallur/vallur.github.com/blob/master/img/posts/jvm4.png)
+![The Good](/img/posts/jvm4.png)
 
 The difference is mostly like asking the kids to cleanup the mess at the end of the day vs immediately when they make it. The later is better while writing enterprise level applications to avoid stop the world garbage collectors. It is also preferable to write code that gives less garbage wherever it is possible topic for another time.
 
 The effect on CPU and garbage without -XX:+UseConcMarkSweepGC is given below when we tweak the variable  ```MEMORY_MIN_THRESHOLD=100;``` instead of 3 and  set the vm option to ```-Xms4000m -Xmx4000m```. Now I made the GC kicking and and spend more time in this case more than 37% of the CPU 
 
-![The UGLY](/https://github.com/vallur/vallur.github.com/blob/master/img/posts/jvm3.png)
+![The UGLY](/img/posts/jvm3.png)
 
 The high CPU is due to the locks caused by ```LinkedBlockingQueue``` trying to run the threads in a tight loop apart from the GC trying to free up memory. Don't do this in your code. and oh my god more than 90% CPU and the system is choking hard what do I do?.
 
 I tried ```-XX:+UseConcMarkSweepGC -XX:ConcGCThreads=4``` and ran the application again i got the below result
 
-![The UGLY](/https://github.com/vallur/vallur.github.com/blob/master/img/posts/jvm2.png)
+![The UGLY](/img/posts/jvm2.png)
 
 This is slightly better than the above but still bad due to the CPU spikes. The time on GC is less than 10% of CPU which is better than the previous result. 
 
 So i tried experimenting with  -XX:+UseParallelGC -XX:MaxGCPauseMillis=1 -XX:ParallelGCThreads=4
 
-![The UGLY](/https://github.com/vallur/vallur.github.com/blob/master/img/posts/jvm5.png)
+![The UGLY](/img/posts/jvm5.png)
 
 The GC is happening more frequently and the CPU spent on GC is less than 10% and total CPU spike is less than 50 % much better picture.
 
