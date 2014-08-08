@@ -13,7 +13,7 @@ image: java.jpg
 ---
 Problem
 ---
-How can do group by and get the count of occurrences of objects in a list. We want to do that based on certain attributes only.
+How can we do group by and get the count of occurrences of objects in a list. We want to do that based on certain attributes only.
 
 The Object we will be using for holding the value will be Product
 
