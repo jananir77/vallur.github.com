@@ -9,7 +9,7 @@ day: 7
 published: true
 summary: How can do group by and get the count of occurrences of objects in a list. We want to do that based on certain attributes only. 
 
-image: java.jpg
+image: java.png
 ---
 Problem
 ---
