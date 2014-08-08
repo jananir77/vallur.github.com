@@ -9,7 +9,7 @@ day: 8
 published: true
 summary: The first thing we need to worry about while developing a new software is handling security.
 
-image: java.jpg
+image: networksecurity1.png
 ---
 
 The first thing we need to worry about while developing a new software is handling security.
