@@ -7,9 +7,7 @@ year: 2014
 month: 08
 day: 8
 published: true
-summary:  This is a continuation of the post how to split keys evenly across different buckets/machines.
-
-In this we will be looking at how to rebalance the buckets when we want to increase a bucket size as this operation is a little trickier than simple array copy.
+summary:  This is a continuation of the post how to split keys evenly across different buckets/machines. In this we will be looking at how to rebalance the buckets when we want to increase a bucket size as this operation is a little trickier than simple array copy.
 image: java.jpg
 ---
 This is a continuation of the post how to split keys evenly across different buckets/machines.
