@@ -9,7 +9,7 @@ day: 8
 published: true
 summary:  With the use of javax.management it is possible to notify other users/ machines about cache eviction or perform alerts for errors or warnings. The notification on MBeans can effectively used for building self healing systems. Where one server can notify others if it is overloaded so that they can take charge.
 
-image: jconsolenotification.png
+image: jconsoleNotification.png
 ---
 With the use of javax.management it is possible to notify other users/ machines about cache eviction or perform alerts for errors or warnings.
 
