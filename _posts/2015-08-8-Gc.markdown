@@ -21,7 +21,7 @@ Code for SimpleThreadPool can be found here.
 
 I wrote this code to see the behavior of GC with different options. With just this option ```-Xms4m -Xmx4m``` the memory foot print becomes like the below
 
-![The Bad](/https://github.com/vallur/vallur.github.com/blob/master/img/posts/jvm1.png)
+![The Bad](/img/posts/jvm1.png)
 
 with the option -XX:+UseConcMarkSweepGC option the image becomes like
 
