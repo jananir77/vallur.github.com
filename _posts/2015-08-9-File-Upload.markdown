@@ -9,7 +9,7 @@ day: 8
 published: true
 summary:  As part of this blog we will look at how to upload and process a file using java Servlet API. I will not be using the Apache File-Upload API.
 
-image: http://beginlinux.com/images/server/ubuntu/apache-tomcat-7.gif
+image: apache.png
 ---
 As part of this blog we will look at how to upload and process a file using java Servlet API.
 I will not be using the Apache File-Upload API.
