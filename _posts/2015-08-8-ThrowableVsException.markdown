@@ -9,7 +9,7 @@ day: 8
 published: true
 summary: I was writing my web application using tomcat and after some iterative changes and unit test changes my unit test succeeded but my web app hangs on a servlet listener class. I kept waiting for sometime and nothing happened. Was looking for an error all it said was failed for the previous error in the log file. 
 
-image: java.jpg
+image: java.png
 ---
 This is a great discussion topic to either impress your fellow developer or offend him.
 
