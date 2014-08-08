@@ -9,7 +9,7 @@ day: 8
 published: true
 summary: The Java notification framework is mainly used in the cache eviction space. It is a reliable way to determine wether a particular server is active and healthy as it would be constantly sending notifications and performance metrics using the JMX API.
 
-image: java.jpg
+image: protobuf.png
 ---
 Serialization is a very big part of modern java applications. Mostly simplicity and readability scores  over performance. If we have a standard format that is small enough and understandable by everyone we would hop on to pick up the winner.
 
