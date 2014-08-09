@@ -12,7 +12,7 @@ summary: The key to how well a system works has a very tight link to how well th
 image: Serialization.png
 ---
 
-Serialization of objects impacts the performance of a service considerably. The more the system spends time on serialization the more the stress is on the CPU and more the time it takes for the client to receive a message from the server.
+Serialization of objects impacts the performance of a service considerably. The more the system spends time on serialization the more the stress is on the CPU and more the time it takes for the client to receive a message from a server.
 
 ![Java Serialization](/img/posts/Serialization.png)
 
