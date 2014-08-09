@@ -9,7 +9,7 @@ day: 8
 published: true
 summary: When we work with java we need to know JVM and how it collects garbage.
 
-image: java.png
+image: jvm.png
 ---
 In this blog i will be talking about some of the JVM options that we can use for tuning performance and doing memory management.
 
