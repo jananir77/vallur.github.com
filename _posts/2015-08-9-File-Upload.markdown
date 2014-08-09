@@ -18,22 +18,21 @@ When  defining your servlet determine a folder where you want the temporary file
 
 you can have the below MultipartConfig annotation as part of the Servlet class file like below.
 
-<pre><code>
+```
 @MultipartConfig(location="/tmp", fileSizeThreshold=-1L, maxFileSize=10*1024*1024, maxRequestSize=10*1024*1024)
 public class FileUploaderServlet extends HttpServlet
 {
-</pre></code>
-
+```
 or you can have it as a configuration as part of the web.xml file. 
 
-<pre><code>
+```
 <multipart-config>
       <location>/tmp</location>
       <max-file-size>10485760</max-file-size>
       <max-request-size>10489760</max-request-size>
       <file-size-threshold>-1L</file-size-threshold>
 </multipart-config>
-</code></pre>
+```
 
 If we are developing a general purpose file up-loader using the configuration in web.xml is the recommended approach. There are default values for all of the above which unlimited for all parameters . In my example my threshold is greater than the max-file-size so everything is instantaneous and in memory.
 
