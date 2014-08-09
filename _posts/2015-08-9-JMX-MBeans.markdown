@@ -9,7 +9,7 @@ day: 8
 published: true
 summary:  I want to get metrics out of my code. In olden days the best way to do that is by using System.out.println. I want to use the below code and see how fast it takes to run serialization and deserialization along with gzip compression.
 
-image: java.jpg
+image: monitoring.png
 ---
 ###Introduction###
 
@@ -27,7 +27,11 @@ We define our MBean interface that holds all the attributes to be exposed to JCo
 
 <script src="https://gist.github.com/vallur/f9392eb6fcdd1aa297f9.js"></script>
 
-Now for the actual implementation of the counter
+In the above all long getter that do not have a matching setters will show a neat graph like below when you double click.
+
+![JMX Monitoring](/img/posts/monitoring.png)
+
+Now for the actual implementation of the counter. 
 
 <script src="https://gist.github.com/vallur/02004e61c73290acbf48.js"></script>
 
