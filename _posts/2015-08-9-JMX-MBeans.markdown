@@ -25,11 +25,11 @@ The best way to do that is by using JMX MBeans which would expose all the needed
 
 We define our MBean interface that holds all the attributes to be exposed to JConsole
 
-<script src="https://gist.github.com/vallur/fcb7ced2174ab299e6de.js"></script>
+<script src="https://gist.github.com/vallur/f9392eb6fcdd1aa297f9.js"></script>
 
 Now for the actual implementation of the counter
 
-<script src="https://gist.github.com/vallur/5c804e608f2071138829.js"></script>
+<script src="https://gist.github.com/vallur/02004e61c73290acbf48.js"></script>
 
 The code above is pretty straight forward. All it has is to do with holding values for the time it takes to process single request and a counter to see the number of requests processed. The other information like total average are all calculated. Now we need to expose this counter for each public method which we want to assess for performance.
 
