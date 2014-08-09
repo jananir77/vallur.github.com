@@ -55,43 +55,10 @@ Let is look at some code to see how easy it is to use FSTSerialization
 
 ***Serialization Code***
 
-```
-final static FSTConfiguration configuration = FSTConfiguration.createDefaultConfiguration();
-
-configuration.registerClass(ArrayList.class,HashMap.class, 
-                                    Object.class,
-                                    TDataTable.class,
-                                    TDataKey.class, 
-                                    TDataEnum.class
-                            );
-FSTObjectOutput output = new FSTObjectOutput(configuration);
-Object result = ...
-output.writeObject(result);
-outputStream.writeInt(output.getWritten());
-outputStream.write(output.getBuffer(), 0, output.getWritten());
-output.resetForReUse(); // instead of close keep it alive so it can be reused.
-```
+<script src="https://gist.github.com/vallur/f0f67b213f9a56a715a3.js"></script>
 
 ***De-Serialization Code***    
-```
-final static FSTConfiguration configuration = FSTConfiguration.createDefaultConfiguration();
-
-configuration.registerClass(ArrayList.class,HashMap.class, 
-                                    Object.class,
-                                    TDataTable.class,
-                                    TDataKey.class, 
-                                    TDataEnum.class
-                            );
-byte[] message = new byte[1000]; 
-//for() having this to simulate a loop
-    if(messageSize>message.length)
-    {
-        message=new byte[messageSize];
-    }
-    inputStream.read(message, 0, messageSize);
-    input.resetForReuseUseArray(message,0,messageSize);
-    TreeStorRequest request = (TreeStorRequest)input.readObject();
-```
+<script src="https://gist.github.com/vallur/0a2f938593bf5fa56812.js"></script>
 
 In the above example the same set of bytes are used for serialization as well as de-serialization so constant known stress for GC.
 
