@@ -5,7 +5,7 @@ category: Coding
 tags: java, serialization
 year: 2014
 month: 08
-day: 19
+day: 10
 published: true
 summary: The key to how well a system works has a very tight link to how well the objects in the system are serialized. What all design considerations can i do.
 
