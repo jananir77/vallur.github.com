@@ -12,7 +12,7 @@ summary: The key to how well a system works has a very tight link to how well th
 image: Serialization.png
 ---
 
-Serialization of objects impacts the performance of a service considerably. The more the system spends time on serialization the more the stress is on the CPU and more the time it takes for the client to receive a message from a server.
+Serialization of objects impacts the performance of a service considerably. The response time for receiving/sending objects is directly linked to the time taken for serialization and deserialization. If the serialized bytes are more that impacts the time spent on the wire. The key to choose the right technology should be based on 3 factors no loss of data, serialization byte size and time taken for serialization and deserialization.
 
 ![Java Serialization](/img/posts/Serialization.png)
 
