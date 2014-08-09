@@ -41,7 +41,7 @@ I tried ```-XX:+UseConcMarkSweepGC -XX:ConcGCThreads=4``` and ran the applicatio
 
 This is slightly better than the above but still bad due to the CPU spikes. The time on GC is less than 10% of CPU which is better than the previous result. 
 
-So i tried experimenting with  -XX:+UseParallelGC -XX:MaxGCPauseMillis=1 -XX:ParallelGCThreads=4
+So i tried experimenting with  ```-XX:+UseParallelGC -XX:MaxGCPauseMillis=1 -XX:ParallelGCThreads=4```
 
 ![The UGLY](/img/posts/jvm5.png)
 
@@ -49,11 +49,11 @@ The GC is happening more frequently and the CPU spent on GC is less than 10% and
 
 While write an application , releasing memory whenever done is a good practice and allocating them incrementally as need basis  -XX:+UseConcMarkSweepGC option will be our friend still may need to play around with -XX:ConcGCThreads=4 based on need and number of threads used.
 
-If we are hogging up memory and releasing them like in the code above when the memory is almost full we have the option to use -XX:+UseParallelGC -XX:MaxGCPauseMillis=1 -XX:ParallelGCThreads=4. 
+If we are hogging up memory and releasing them like in the code above when the memory is almost full we have the option to use ```-XX:+UseParallelGC -XX:MaxGCPauseMillis=1 -XX:ParallelGCThreads=4```. 
 
 There are other JVM options to tune like -XX:ThreadStackSize which can be tuned if we are writing a lot of recursive operations in our code. The full list of JVM options can be found <a href="http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html">here</a>. There are other options to fine tune the young and old generation memory space. 
 
-If we are writing code that requires more memory than the system actually has. It is always possible to allocate more during startup with the option -Xms53000m -Xmx53000m. I had tried to allocate close to 53GB on my MAC. It tries to allocate as much as possible and for the rest the OS does page faults and loads the items into memory opportunistically which would hinder performance. This helps in testing my long running code from home on my laptop.  
+If we are writing code that requires more memory than the system actually has. It is always possible to allocate more during startup with the option ```-Xms53000m -Xmx53000m```. I had tried to allocate close to 53GB on my MAC. It tries to allocate as much as possible and for the rest the OS does page faults and loads the items into memory opportunistically which would hinder performance. This helps in testing my long running code from home on my laptop.  
 
 As a general rule of thumb i tend to allocate 60% of the server memory for my server side code JVM and use 70%-80% of the memory that is allotted to the JVM to avoid things like stop the world GC.
 
