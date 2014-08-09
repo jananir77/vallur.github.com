@@ -9,7 +9,7 @@ day: 8
 published: true
 summary:  i am going to demonstrate how this can be effectively done from code using java. You will not be seeing code specific to communicating to different machines but will demonstrate the same using my own custom implementation of ArrayMap and % (MOD) operator.
 
-image: java.jpg
+image: buckets.png
 ---
 Here i am not going to show how this is done in cassandra or MongoDB. But i am going to demonstrate how this can be effectively done from code using java. You will not be seeing code specific to communicating to different machines but will demonstrate the same using my own custom implementation of ArrayMap and % (MOD) operator.
 
