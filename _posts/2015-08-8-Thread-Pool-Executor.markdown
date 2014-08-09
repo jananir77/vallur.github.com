@@ -9,7 +9,7 @@ day: 8
 published: true
 summary: It is all about threads. If we have your handle on thread pool we got it all under control. Everything is about how much you can do at a time.
 
-image: java.jpg
+image: SimpleThreadPool.png
 ---
 This time i am going to put the code first and try to explain later.
 
