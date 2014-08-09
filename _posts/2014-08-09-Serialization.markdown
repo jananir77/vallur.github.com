@@ -14,7 +14,7 @@ image: Serialization.png
 
 Serialization of objects impacts the performance of a service considerably. The more the system spends time on serialization the more the stress is on the CPU and more the time it takes for the client to receive a message from the server.
 
-![enter image description here][1]
+![Java Serialization](/img/posts/Serialization.png)
 
 Serialization is the process of converting the object in memory into a byte or char stream so that it can be saved to disk or sent over the wire.
 
@@ -97,7 +97,7 @@ In the above example the same set of bytes are used for serialization as well as
 
 Some metrics while doing serialization and deserialization between client and server on the same machine using FST and Banyan random rows fetch
 
-![FSTSerialize][1]
+![FSTSerialize](/img/posts/JMXSerialize.png)
 
 The max processing time my machine crying and saying not enough memory close some VM's.
 
