@@ -47,7 +47,7 @@ Advantages
 Disadvantages
 ---
 * Can cause Memory issues.
-* This will incur memory allocation for each poll / put entry. Hence there will be lots of garbage additional work for GC.
+* This will incur memory allocation for each poll / put entry. Hence there will be a lot of additional work for the GC.
 * This will incur a lock since this is a LinkedBlockingQueue on both push as well as pop operations.
 * A lock will be made on the thread when the queue is full for inserting new elements.
 
