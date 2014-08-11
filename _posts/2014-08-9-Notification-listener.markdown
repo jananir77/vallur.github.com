@@ -57,6 +57,7 @@ Query MBeanServer MBeans:
  ObjectName = java.nio:type=BufferPool,name=mapped
  ObjectName = java.util.logging:type=Logging
 ```
+
 This one spits out all the objects available and since I am not writing a general purpose JMX client. I want to listen to specific counters for notification. Now the enum that we defined for TimeLapseCounters will help us here as it holds an object for the deserialize method.
 
 We will be adding our class for listening to Notification. This class simply spits out the error message it receives from a notification.
@@ -64,27 +65,12 @@ We will be adding our class for listening to Notification. This class simply spi
 <script src="https://gist.github.com/vallur/c317ff2125a9297603c5.js"></script>
 
 In order to listen to notifications we need to add the below two lines to our MiscNotificationListener class 
-```mbsc.addNotificationListener(TimeLapseCounters.deSerialize.getObjectName(),new JMXNotificationListener(),null,null); Thread.sleep(100000); 
-```
+
+<script src="https://gist.github.com/vallur/9d5656495332870e9758.js"></script>
 
 The final output that includes the notification error messages is listed below
 
-```
-Receivied Error Message
-======================================
-Message: My code actually fails. I am still human.
-======================================
-Receivied Error Message
-======================================
-Message: My code actually fails. I am still human.
-======================================
-Receivied Error Message
-======================================
-Message: My code actually fails. I am still human.
-======================================
-...
-...
-```
+<script src="https://gist.github.com/vallur/d8820a29cda0bbcbb496.js"></script>
 
 
 ![JMX Monitoring](/img/posts/notification.png)
