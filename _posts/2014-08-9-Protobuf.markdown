@@ -2,7 +2,7 @@
 layout: post
 title: Java Object Binary Serialization Metrics using ProtoBuf
 category: Coding
-tags: java, Serialization, protobuf
+tags: java Serialization protobuf
 year: 2014
 month: 08
 day: 8
@@ -17,7 +17,17 @@ In this blog i shall look at implementing classes from the serialization point o
 
 Serializing and DeSerializing java objects using Protobuf. Protobuf actually kicks java serialization's back when it comes to performance. I would like to decide that this would be my choice for my application. But it has its own limitations as protobuf does not have proper support for Maps and classes with templates or generics.
 
-The main reason why protobuf is very fast because we create a schema upfront for our object and assign a integer for all the attributes in the class. When serializing and deserializing protobuf knows exactly where a field is and what type of field it is and which one is coming next. It also knows if a field is optional so it can choose to look for nulls there. Since the serialization pattern is well known and classes are designed like the developer implementing their own externalize interface for the class, protobuf is able to achieve the performance while writing to byte array.
+Some of the reasons why protobuf is extremely fast is listed below
+
+- The byte array size needed to serialize an object is calulated and allocated first rather than on the fly. The way array resizing is done it is faily expensive operation. This is one of the places where protobuf stands way ahead of the curve.
+
+- All fields are marked with a number and set as required or optional to make the expectations on field location in a stream well known. By doing that they make their code generation as simple as 
+
+<script src="https://gist.github.com/vallur/828186685d776abbad7e.js"></script>
+
+- When dealing with Strings they use the concept of lazy string. While deserializing string values they are deserialized and stored as bytes and actually deserialized to String only when they are accessed via their getter method. This i think is clever as the actual time taken is moved to else where.
+
+I would say google has successfully written a code generator that works exactly like how we would write a externalize function to serialize and deserialize our objects.
 
 I created a not so complex ComplexItemContainer schema in protobuf
 
