@@ -18,13 +18,13 @@
 		<h1>{{ page.title }}</h1>	
 </div>		
 <div class="row">	
-	<div class="span3 column">
+<!--	<div class="span3 column">-->
 		<strong>{{ page.date | date: "%B %e, %Y" }} <small>.  <a href="http://vallur.github.com{{ page.url }}#disqus_thread" data-disqus-identifier="{{ page.url }}">Comments</a></small></strong>
 		<br/><small>Tags: {% for tag in page.tags %} <a href="/tags/{{ tag }}" title="View posts tagged with &quot;{{ tag }}&quot;"><u>{{ tag }}</u></a>  {% if forloop.last != true %} {% endif %} {% endfor %} </small>
-		<div class="row">&nbsp;<div class="g-plusone"></div><script type="IN/Share" data-counter="right"></script><iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=vallur&repo=vallur.github.com&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="80px" height="20px"></iframe>&nbsp;<iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=vallur&repo=vallur.github.com&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="98px" height="20px"></iframe></div>
-	</div>		
-	<div class="span6 column">
+<!--	</div>		-->
+<!--	<div class="span6 column">-->
 		<p class="pull-right">{% if page.previous.url %} <a href="{{page.previous.url}}" title="Previous Post: {{page.previous.title}}"><i class="icon-chevron-left"></i></a> 	{% endif %}   {% if page.next.url %} 	<a href="{{page.next.url}}" title="Next Post: {{page.next.title}}"><i class="icon-chevron-right"></i></a> 	{% endif %} </p>  
-	</div>
+<!--	</div>-->
 </div>
+<div class="row">&nbsp;<div class="g-plusone"></div><script type="IN/Share" data-counter="right"></script><iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=vallur&repo=vallur.github.com&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="80px" height="20px"></iframe>&nbsp;<iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=vallur&repo=vallur.github.com&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="98px" height="20px"></iframe></div>
 <div><hr></div>
