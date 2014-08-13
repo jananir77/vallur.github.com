@@ -25,7 +25,9 @@ Some of the reasons why protobuf is extremely fast is listed below
 
 <script src="https://gist.github.com/vallur/828186685d776abbad7e.js"></script>
 
-- When dealing with Strings they use the concept of lazy string. While deserializing string values they are deserialized and stored as bytes and actually deserialized to String only when they are accessed via their getter method. This i think is clever as the actual time taken is moved to else where.
+- When dealing with Strings they use the concept of lazy string. While deserializing string values they are deserialized and stored as bytes and actually deserialized to String only when they are accessed via their getter method. This i think is clever as the actual time taken is moved to else where. Also there is slight swich of objects used in string when they serialize a string it is converted into object and vice versa by replacing an ref object class. Which makes me think that their assumption is these protobuf objects do not live in memory for long which is true in most cases.
+
+<script src="https://gist.github.com/vallur/4897c3a1139189a21587.js"></script>
 
 I would say google has successfully written a code generator that works exactly like how we would write a externalize function to serialize and deserialize our objects.
 
