@@ -81,7 +81,7 @@ To conclude based on what you are developing I would suggest you to write your o
 			/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
 			var disqus_shortname = 'vallur'; // required: replace example with your forum shortname
 			var disqus_identifier = '{{ page.url }}';
-			var disqus_url = 'http://erjjones.github.com{{ page.url }}';
+			var disqus_url = 'http://vallur.github.io{{ page.url }}';
 			
 			/* * * DON'T EDIT BELOW THIS LINE * * */
 			(function() {
