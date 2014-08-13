@@ -68,14 +68,14 @@ Below is the code i used for performing metrics calculation.
 
 <script src="https://gist.github.com/vallur/acd4469c10d92a86f43b.js"></script>
 
-The actual byte size used for serialization in first pass is 245k. The algorithm i used above is very generic and has least amount of repetition of string or int values possible. My idea is to get the worst case performance for a object like this. My performance counters helped in getting the metrics below.
+The actual byte size used for serialization in first pass is 120k. The algorithm i used above is very generic and has least amount of repetition of string or int values possible. My idea is to get the worst case performance for a object like this. My performance counters helped in getting the metrics below.
 
 ![Protobuf Serialize](/img/posts/protobuf1.png)
 ![Protobuf deSerialize](/img/posts/protobuf2.png)
 
-When I reduce the LOOPCOUNT to 1 and keep the data size to 1 k range the time taken in serialization is less than 10 Us cannot get any better.
+When I reduce the LOOPCOUNT to 1 and keep the data size to 100 bytes the time taken in serialization is less than 10 Us cannot get any better.
 
-Ironically serialization is faster than deserialization. But i don't care about that as long as we are still in less than 1 - 2 ms range as i am not using a powerful machine. Java native serialization is 10x worse than protobuf so i will not show that and you can do your own metrics calculations.
+Ironically serialization is faster than deserialization. But i don't care about that as long as we are still in the low Us ranges as i am not using a powerful machine and we will have enough buffer for network unknowns. Java native serialization is 10x worse than protobuf so i will not show that and you can do your own metrics calculations.
 
 To summarize only drawback is not having the support for Map and classes with generics support. if you know the datatype and class structure protobuf is the one for you. Due to this limitation i will have to look further for other serialization frameworks or implement my own the search continues..... 
 
