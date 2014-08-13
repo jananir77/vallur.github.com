@@ -50,7 +50,6 @@ other than java serialization.
 	It almost felt like some one read my mind today and went back in time to write it ;). The data being compressed using this is smaller in size than protobuf and almost the same size or even better than lz4 compression with more speed.
     
     It is not fair if i don't mention the disadvantages even though i like it a lot. The developer uses UnSafe methods to acheive the speed of serialization. I am trying to push its limits. It is working in a fantastic way when trying to serialize and de-serialize objects of size less than 2 MB which is 10 times bigger in size when using java serialization. Performance degradation is seen when the object size goes higher, it is still able to serialize and deserialize within times lesser than java serialization.
-    
 
 Let us look at some code to see how easy it is to use FSTSerialization
 
@@ -63,7 +62,7 @@ Let us look at some code to see how easy it is to use FSTSerialization
 
 In the above example the same set of bytes are used for serialization as well as de-serialization so constant known stress for GC.
 
-Some metrics while doing serialization and deserialization between client and server on the same machine using FST and Banyan random rows fetch
+Some metrics while doing serialization and deserialization between client and server on the same machine using FST and Banyan random rows fetch. The data size is in the low 1k range and doesnot include network traffic time. This should give you an idea about the speed of doing search operations in Banyan.
 
 ![FSTSerialize](/img/posts/JMXSerialize.png)
 
