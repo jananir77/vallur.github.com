@@ -47,7 +47,7 @@ other than java serialization.
     - Repetitive strings in object are serialized and written once naturally allowing for compression.
     - Most strings in the north american or the europian subcontinent fall within the 254 charectar mark. But we use UTF-8 as the charecter set to store them - which makes it as using 2 bytes for every char. FST uses 1 byte to store all char types and uses 3 bytes for any occassional double byte char.
     
-    It almost felt like some one read my mind today and went back in time to write it ;). The data being compressed using this is smaller in size than protobuf and almost the same size or even better than lz4 compression with more speed.
+	It almost felt like some one read my mind today and went back in time to write it ;). The data being compressed using this is smaller in size than protobuf and almost the same size or even better than lz4 compression with more speed.
     
     It is not fair if i don't mention the disadvantages even though i like it a lot. The developer uses UnSafe methods to acheive the speed of serialization. I am trying to push its limits. It is working in a fantastic way when trying to serialize and de-serialize objects of size less than 2 MB which is 10 times bigger in size when using java serialization. Performance degradation is seen when the object size goes higher, it is still able to serialize and deserialize within times lesser than java serialization.
     
