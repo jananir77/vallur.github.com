@@ -31,6 +31,8 @@ After learning the best from both these ideas i planned to write my own API and 
 
 4. Only works with known types primitive types and their respective boxed objects, List, Map and some more objects specific to banyan. This looks custom built for banyan but is very easy to develop.
 
+5. Automatically provides compression and the compression acheived is better than LZ4 compression on top of java serialized bytes.
+
 
 <div style="height:330px;overflow-y:scroll">
 <script src="https://gist.github.com/vallur/ba2856722600cc7a6653.js"></script>
@@ -112,6 +114,8 @@ API    |  Byte Size  |	Performance AVG |
  Banyan | 174 | 5 Us | 
  [Protobuf](https://code.google.com/p/protobuf/) | 218 | 10 Us |
  [Fast](http://ruedigermoeller.github.io/fast-serialization/) | 263 | 14 Us |
+ 
+The RandomObject used in this test has a lot of strings which makes FST scream a bit. If we remove the strings and replace them with more primitives all the above metrics become comparable and all three API's perform the same way.
  
  Now i just need to have support for serializing map types with these super great performance numbers - i get to jump to my next great solution. I am super excited on seeing these metrics. I would be willing to make this genenral purpose if anyone is interested in getting more about this. Based on these metrics I decided to write my own Serialization API's as listed above and they will be avialbale in the banyan repository soon. 
  
