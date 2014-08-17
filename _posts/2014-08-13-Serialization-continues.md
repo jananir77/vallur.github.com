@@ -60,34 +60,34 @@ The list size of 1000 count the metrics are below
 
 API    |  Byte Size  |	Performance AVG | 
  ---------- | ----------- |	--------------- | 
- Banyan | 172582 | 1 ms 500 Us | 
- [Protobuf](https://code.google.com/p/protobuf/) | 247392 | 6 ms |
- [Fast](http://ruedigermoeller.github.io/fast-serialization/) | 203696 | 21 ms |
- Java | 342209 | 45 ms |
+ Banyan | 111,965 | 4 ms | 
+ [Protobuf](https://code.google.com/p/protobuf/) | 247,981 | 4 ms |
+ [Fast](http://ruedigermoeller.github.io/fast-serialization/) | 120,490 | 7 ms |
+ Java | 204,135 | 45 ms |
 
 For a list size of 750 count the metrics are below 
 
 API    |  Byte Size  |	Performance AVG | 
  ---------- | ----------- |	--------------- | 
- Banyan | 129717 | 954 Us | 
- [Protobuf](https://code.google.com/p/protobuf/) | 185766 | 4 ms |
- [Fast](http://ruedigermoeller.github.io/fast-serialization/) | 152995 | 14 ms |
+ Banyan | 78,333 | 4 ms | 
+ [Protobuf](https://code.google.com/p/protobuf/) | 184,404 | 3 ms |
+ [Fast](http://ruedigermoeller.github.io/fast-serialization/) | 84,467 | 5 ms |
  
  For a list size of 500 count the metrics are below 
 
 API    |  Byte Size  |	Performance AVG | 
  ---------- | ----------- |	--------------- | 
- Banyan | 85737 | 544 Us | 
- [Protobuf](https://code.google.com/p/protobuf/) | 124262 | 3 ms |
- [Fast](http://ruedigermoeller.github.io/fast-serialization/) | 101265 | 9 ms |
+ Banyan | 52,401 | 2 ms | 
+ [Protobuf](https://code.google.com/p/protobuf/) | 123,468 | 2 ms |
+ [Fast](http://ruedigermoeller.github.io/fast-serialization/) | 56,537 | 2 ms |
  
   For a list size of 250 count the metrics are below 
 
 API    |  Byte Size  |	Performance AVG | 
  ---------- | ----------- |	--------------- | 
- Banyan | 43397 | 474 Us | 
- [Protobuf](https://code.google.com/p/protobuf/) | 61798 | 1 ms |
- [Fast](http://ruedigermoeller.github.io/fast-serialization/) | 51175 | 5 ms |
+ Banyan | 26,288 | 1 ms | 
+ [Protobuf](https://code.google.com/p/protobuf/) | 61,471 | 1 ms |
+ [Fast](http://ruedigermoeller.github.io/fast-serialization/) | 28,211 | 1 ms |
  
  Now going and looking at the more realistic use cases
  
@@ -95,27 +95,27 @@ API    |  Byte Size  |	Performance AVG |
 
 API    |  Byte Size  |	Performance AVG | 
  ---------- | ----------- |	--------------- | 
- Banyan | 17711 | 153 Us | 
- [Protobuf](https://code.google.com/p/protobuf/) | 24260 | 750 Us |
- [Fast](http://ruedigermoeller.github.io/fast-serialization/) | 20839 | 2 ms |
+ Banyan | 104,40 | 550 µs | 
+ [Protobuf](https://code.google.com/p/protobuf/) | 248,84 | 450 µs |
+ [Fast](http://ruedigermoeller.github.io/fast-serialization/) | 112,44 | 1 ms |
  
     For a list size of 25 count the metrics are below 
 
 API    |  Byte Size  |	Performance AVG | 
  ---------- | ----------- |	--------------- | 
- Banyan | 4301 | 25 Us | 
- [Protobuf](https://code.google.com/p/protobuf/) | 6079 | 75 Us |
- [Fast](http://ruedigermoeller.github.io/fast-serialization/) | 5104 | 250 Us |
+ Banyan | 25,67 | 120 µs | 
+ [Protobuf](https://code.google.com/p/protobuf/) | 62,03 | 100 µs |
+ [Fast](http://ruedigermoeller.github.io/fast-serialization/) | 27,98 | 154 µs |
  
      For a list size of 1 count the metrics are below 
 
 API    |  Byte Size  |	Performance AVG | 
  ---------- | ----------- |	--------------- | 
- Banyan | 174 | 5 Us | 
- [Protobuf](https://code.google.com/p/protobuf/) | 218 | 10 Us |
- [Fast](http://ruedigermoeller.github.io/fast-serialization/) | 263 | 14 Us |
+ Banyan | 103 | 7 µs | 
+ [Protobuf](https://code.google.com/p/protobuf/) | 238 | 7 µs |
+ [Fast](http://ruedigermoeller.github.io/fast-serialization/) | 140 | 10 µs |
  
-The RandomObject used in this test has a lot of strings which makes FST scream a bit. If we remove the strings and replace them with more primitives all the above metrics become comparable and all three API's perform the same way.
+As you can see from the metrics above all three are comparable on performance. Protobuf is a little faster as it is more declarative. I shall update the post with more fine tuning to acheive better performance.
  
  Now i just need to have support for serializing map types with these super great performance numbers - i get to jump to my next great solution. I am super excited on seeing these metrics. I would be willing to make this genenral purpose if anyone is interested in getting more about this. Based on these metrics I decided to write my own Serialization API's as listed above and they will be avialbale in the banyan repository soon. 
  
