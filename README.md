@@ -1,6 +1,6 @@
 ## Vallur.Github.io
 
-This is my GitHub user page made with Jekyll, and [Fuel UX](http://exacttarget.github.com/fuelux/).  
+This is my gitHub user page made with Jekyll, and [Fuel UX](http://exacttarget.github.com/fuelux/).  
 
 I am writing blogs as a design brain dump for the Next generation No Sql Solution i am developing.
 
