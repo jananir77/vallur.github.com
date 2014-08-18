@@ -1,4 +1,4 @@
-## Vallur.Github.io
+## Vallur.github.io
 
 This is my gitHub user page made with Jekyll, and [Fuel UX](http://exacttarget.github.com/fuelux/).  
 
