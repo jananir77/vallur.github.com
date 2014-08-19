@@ -31,11 +31,14 @@ other than java serialization.
 
 **Google Protobuf**
 
-    Google's protobuf is extremely fast. The way it works is by generating a custom serialization class for the object. It writes a number for each type that is serialized and the value. Hence considerbly reducing the type information that is written. Hence the binary stream written by protobuf is propereitary you will have to use the same objects builder to de-serialize the object back. Protobuf is very ideal as it supports for C++, java and other languages. Major disadvantage is, it cannot support Generic object types in a class. This makes it not suitable or would put more work on the client and server API to convert the generic objects into strong typed objects for protobuf serialization. 
+    Google's protobuf is extremely fast.
+    
+    The way it works is by generating a custom serialization class for the object. It writes a number for each type that is serialized and the value. Hence considerbly reducing the type information that is written. The binary stream written by protobuf is propereitary you will have to use the same objects builder to de-serialize the object back. Protobuf is very ideal as it supports for C++, java and other languages as you can use the same protoc compiler to generate the language specific code to serialize/deserialize the objects. 
+    Major disadvantage is, it cannot support Generic object types or deep objects like Map in a class. This makes it not suitable or would put more work on the client and server API to convert the generic objects into strong typed objects for protobuf serialization. 
 
 **GSON and others**
     
-    There are other fast binary serializtion API's like GSON in the market. These seem to mitigate the problem Protobuf has by allowing the developer to register the class before serializing it. Still we will have to write a general object serializer for the class of type Object. This makes it difficult for serializing deep objects. Our externalization code becomes very difficult. It would be better to write my own instead of using a generic serializer specific for a framework like GSON or simple jackson.
+    There are other fast binary serializtion API's like GSON in the market. These seem to mitigate the problem Protobuf has by allowing the developer to register the class before serializing it. Still we will have to write a general object serializer for the class of type Map. This makes it difficult for serializing deep objects. Our externalization code becomes very difficult. It would be better to write my own instead of using a generic serializer specific for a framework like GSON or simple jackson. Provided i can meet the performance of either of them.
 
 **Fast Serialization**
 

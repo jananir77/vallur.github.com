@@ -21,14 +21,11 @@ Now you had seen the code here you can see where this can be used. The most comm
 60,000,000 million sounds like a lot and it is for a small and average system. It is a good idea to preallocate the sizes than to incur the cost of resizing arrays on the fly makes planning memory and H/W for high performant systems easier and less stress on garbage collector.   
 
 If you like my blog drop a line and I am always happy to learn and share more.
-
-
 <div class="row">	
 	<div class="span9 column">
 			<p class="pull-right">{% if page.previous.url %} <a href="{{page.previous.url}}" title="Previous Post: {{page.previous.title}}"><i class="icon-chevron-left"></i></a> 	{% endif %}   {% if page.next.url %} 	<a href="{{page.next.url}}" title="Next Post: {{page.next.title}}"><i class="icon-chevron-right"></i></a> 	{% endif %} </p>  
 	</div>
 </div>
-
 <div class="row">	
     <div id="fb-root"></div>
 <script>(function(d, s, id) {

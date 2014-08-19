@@ -50,7 +50,6 @@ When we can do any of the above operations in parallel using all the available C
 <script src="https://gist.github.com/vallur/f5d1d5aa0c4fcad2bb9f.js"></script>
 
 Yup plain and simple just adding parallelStream gives the solution. Please drop a comment if you like this blog.
-
 <div class="row">	
 	<div class="span9 column">
 			<p class="pull-right">{% if page.previous.url %} <a href="{{page.previous.url}}" title="Previous Post: {{page.previous.title}}"><i class="icon-chevron-left"></i></a> 	{% endif %}   {% if page.next.url %} 	<a href="{{page.next.url}}" title="Next Post: {{page.next.title}}"><i class="icon-chevron-right"></i></a> 	{% endif %} </p>  
@@ -60,7 +59,7 @@ Yup plain and simple just adding parallelStream gives the solution. Please drop 
 <div class="row">	
     <div class="span9 columns">    
 		<h2>Comments Section</h2>
-	    <p>Feel free to comment on the post but keep it clean and on topic.</p>	
+	    <p>Feel free to comment on the post but keep it clean and on topic.</p>
 		<div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
