@@ -102,7 +102,7 @@ The suggestions provided are suitable for Banyan and should not be considered as
   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-<div class="fb-comments" data-href="http://vallur.github.io{{ page.url }}" data-numposts="5" data-colorscheme="light"></div>
+<div class="fb-comments" data-href="http://vallur.github.io{{ page.url }}" data-numposts="5" data-width="450" data-colorscheme="light"></div>
 <!-- Twitter -->
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
