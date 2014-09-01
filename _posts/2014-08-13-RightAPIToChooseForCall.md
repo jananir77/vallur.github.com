@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Rest Over JSON or Web Sockets or plain old sockets for communication
+title: Rest Over JSON or plain old sockets for communication
 category: Coding
 tags: java REST SOA JSON XML
 year: 2014
@@ -89,6 +89,7 @@ Plain old sockets. When we want to support more than 50,000 requests per second 
 
 If we use 700 bytes for communication for each read/write we end up with 80,530 requests per second. I would say if the system keeps its data communication in this mark it should be ok in meeting the 50,000 to 80,000 requests per second per machine. If we assume that traces are run on the system we will be loosing a lot of bandwidth for that. It is safe to assume that by implementing using sockets and having very low overhead for point to point communication this system can support minimum 50,000 requests per second per node on a healthy state.
 
+Picture below shows what the client server code does.
 ![Client server architecture for banyan](/img/posts/clientserver.png)
 
 The code used to verify performance with client API calls.
