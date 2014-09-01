@@ -4,12 +4,12 @@ title: Rest Over JSON or Web Sockets or plain old sockets for communication
 category: Coding
 tags: java REST SOA JSON XML
 year: 2014
-month: 08
-day: 10
+month: 09
+day: 1
 published: true
 summary: REST over JSON is the 1st choice when we try to expose services to the outside world. Though in recent times Web Sockets are raising up to the challenge to replace REST as rest APIS are too chatty to increase the messages sent over the network. 
 
-image: Serialization.png
+image: clientserver.png
 ---
 
 <b>ReST</b> - <b>R</b>epresentational <b>S</b>tate <b>T</b>ransfer) over JSON (<b>J</b>ava<b>S</b>cript <b>O</b>bject <b>N</b>otation) is the 1st choice when we try to expose services to the outside world. Though in recent times Web Sockets are making developers think as a replacement as REST APIS are too chatty and increase the messages sent over the network. 
@@ -31,6 +31,7 @@ Some of the advantages of using ReST
 Disadvantages of using ReST. I have to be clear when i say disadvantages of ReST, it is mostly the disadvantages of how the servers and the protocol is implemented using the ReSTFUL architecture. 
 
 * HTTP is chatty. for example a simple request can have the below headers in exchange.
+* Serialization and deserialization to JSON or XML is expensive for memory as well as performance. 
 
 ####HttpRequest####
 ``` 
@@ -64,7 +65,7 @@ Code used to perf test using URLConnection
 
 <script src="https://gist.github.com/vallur/1f062f73a3148565f6f9.js"></script>
 
-Code for executing the client thread to execute multiple gets at a time
+Code for client thread to execute multiple gets at a time
 
 <script src="https://gist.github.com/vallur/2a03147fd076ef0cbc94.js"></script>
 
@@ -74,6 +75,7 @@ total time spent for 2000000 calls - 5 mins 43 secs 855 ms 802 Us
 ```
 
 Test results from JVM metrics :- 
+
 ![RestClient metrics](/img/posts/RestClient2.png)
 
 Metrics with the httpcomponents is way worse than using urlconnection so not showing that here. A
@@ -87,6 +89,8 @@ Plain old sockets. When we want to support more than 50,000 requests per second 
 
 If we use 700 bytes for communication for each read/write we end up with 80,530 requests per second. I would say if the system keeps its data communication in this mark it should be ok in meeting the 50,000 to 80,000 requests per second per machine. If we assume that traces are run on the system we will be loosing a lot of bandwidth for that. It is safe to assume that by implementing using sockets and having very low overhead for point to point communication this system can support minimum 50,000 requests per second per node on a healthy state.
 
+![Client server architecture for banyan](/img/posts/clientserver.png)
+
 The code used to verify performance with client API calls.
 
 <script src="https://gist.github.com/vallur/da13b54d6bd9b73567a2.js"></script>
@@ -95,10 +99,12 @@ Test results : -
 ```
 total time taken for completion of 2000000 calls - 2 mins 56 secs 2 ms 238 Us
 ```
+
 Test results from JVM metrics :-
+
 ![SocketClient metrics](/img/posts/socketmetrics.png)
 
-The total round trip time depends on the network and i have seen network lag of 300 Us to 9 ms per request for a communication bytesize of less than 1k. This network lag begs for the need for compression when the message size increases which i shall discuss in my next blog.
+The total round trip time depends on the network and i have seen network lag of 300 Us to 9 ms per request for a communication bytesize of less than 1k for any of the above technologies we choose. This network lag begs for the need for compression when the message size increases which i shall discuss in my next blog.
 
 Server side code for the socket 
 
@@ -109,18 +115,22 @@ The class responsible for servicing simple requests
 <script src="https://gist.github.com/vallur/133259b47e46a7240085.js"></script>
 
 Test metrics from server side :-
+
 ![SocketClient metrics](/img/posts/socketServer.png)
 
 From this, the service can cater to more than 50,000 requests per second. 
 
 Advantages:- 
+
 * Behave very simmillar to ReST and can also listen to port 80.
 * very light weight  
-* Extreme performance on speed
+* Extreme performance on speed which allows to meet extreme amount of client requests per second.
 
 Disadvantages:-
+
 * will have to implement everything from scratch.
 * Security will have to be implemented.
+* Request and response is not human readable. Not exactly a disadvantage as Rest post requests are base 64 encoded which is not human readable either.
 
 For the reason of security and availability of admin operations it would not be a bad idea to implement a tomcat application on top of this framework. Just a thought for the future.
 
