@@ -4,8 +4,8 @@ title: Rest Over JSON or plain old sockets for communication
 category: Coding
 tags: java REST SOA JSON XML
 year: 2014
-month: 09
-day: 1
+month: 08
+day: 31
 published: true
 summary: REST over JSON is the 1st choice when we try to expose services to the outside world. Though in recent times Web Sockets are raising up to the challenge to replace REST as rest APIS are too chatty to increase the messages sent over the network. 
 
