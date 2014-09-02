@@ -14,7 +14,7 @@ image: clientserver.png
 
 <b>ReST</b> - <b>R</b>epresentational <b>S</b>tate <b>T</b>ransfer) over JSON (<b>J</b>ava<b>S</b>cript <b>O</b>bject <b>N</b>otation) is the 1st choice when we try to expose services to the outside world. Though in recent times Web Sockets are making developers think as a replacement as REST APIS are too chatty and increase the messages sent over the network. 
 
-The community choose ReST over SOAP or RPC as ReST is further light weight and doesnot need to adhere to a specific schema like SOAP. ReST is very light weight built on top of the http stateless protocol where it supports the operations of CRUD. In short it is no way different from how you do a write a servlet or any other webpage. The framework is more fine tuned for services that can be represented in the form of resources :- product will be a resource and we would suppot the below 4 operations on product with rest.
+The community choose ReST over SOAP as ReST is further light weight and doesnot need to adhere to a specific schema like SOAP. ReST is light weight built on top of the http stateless protocol where it supports the operations of CRUD. In short it is no way different from how we write a servlet or any other webpage, in short just a browser is enough to communicate with ReST. The framework is more fine tuned for services that can be represented in the form of resources ex:- product will be a resource and we would suppot the below 4 operations on product with rest.
  
 <b>C</b>reate, <b>R</b>ead, <b>U</b>pdate, <b>D</b>elete operations can be used to access a resource using the html methods POST, GET, PUT and DELETE to do the respective operation.
 
@@ -46,7 +46,7 @@ User-Agent: Apache-HttpClient/4.1.1 (java 1.5)\r\n
 ```
 HTTP/1.1 200 OK\r\n
 Transfer-encoding: chunked\r\n
-Content-type: text/json\r\nƒ
+Content-type: text/json\r\n
 Date: Wed, 20 Aug 2014 23:34:17 GMT\r\n
  \r\n
 Hello World\r\n
@@ -85,9 +85,10 @@ Metrics with the httpcomponents is way worse than using urlconnection so not sho
 Websockets are a viable alternative to ReST API. But they are very simillar in the sense each request has similar kind of headers transfered back and forth. A socket can be upgraded and used for full duplex communication which is a biggest advantage over ReST. This advantage makes it viable to be used for writing a driver API for database based solutions. The biggest disadvantage with websockets is it is a very basic infrastructure on which we will have to build everything. If I have to choose WebSockets I can choose Sockets.
 
 ####Sockets####
-Plain old sockets. When we want to support more than 50,000 requests per second per server, the biggest bottlenect is the size of the message sent back and forth over the network. A gigabit network can support a maximum number of bytes per second is ((1024^3)/8)*70% leaving 30% for other system monitoring overhead = 93,952,409. Any distributed No-SQL solution will have to deal with its own overhead if i assume we get 40% writes and 60% reads on a specific machine that means 40% of the requests have to have a hop to another machine to resolve conflict that leaves us with just 60% of the network of 93,952,409 = 56,371,445.
+I thought about my first java class where we built a chat application using plain old sockets.
+When we want to support more than 50,000 requests per second per server, the biggest bottleneck is the size of the message sent back and forth over the network. A gigabit network can support a maximum number of bytes per second is ((1024^3)/8)*60% leaving 40% for other system monitoring overhead = 80,530,636 bytes. Any distributed No-SQL solution will have to deal with its own overhead if i assume we get 40% writes and 60% reads on a specific machine that means 40% of the requests have to have a hop to another machine to resolve conflict that leaves us with just 60% of the network of 80,530,636 = 48,318,381 bytes.
 
-If we use 700 bytes for communication for each read/write we end up with 80,530 requests per second. I would say if the system keeps its data communication in this mark it should be ok in meeting the 50,000 to 80,000 requests per second per machine. If we assume that traces are run on the system we will be loosing a lot of bandwidth for that. It is safe to assume that by implementing using sockets and having very low overhead for point to point communication this system can support minimum 50,000 requests per second per node on a healthy state.
+If we use 700 bytes for communication for each read/write we end up with 69,026 requests per second. I would say if the system keeps its data communication in this mark it should be ok in meeting the 50,000 to 70,000 requests per second per machine. If we assume that traces are run on the system we will be loosing a lot of bandwidth for that. It is safe to assume that by implementing using sockets and having very low overhead for point to point communication this system can support minimum 50,000 requests per second per node on a healthy state.
 
 Picture below shows what the client server code does.
 ![Client server architecture for banyan](/img/posts/clientserver.png)
