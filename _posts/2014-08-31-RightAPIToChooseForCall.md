@@ -142,10 +142,11 @@ Disadvantages:-
 * Request and response is not human readable. Not exactly a disadvantage as Rest post requests are base 64 encoded which is not human readable either.
 
 The hardware used for the performance tests are below:
-Server - 2GHz Intel Core i7 16 GB 1600 DDR3 RAM - OSX 10.9.4
-Client - 2.7 GHz Intel(R) Core i5 8 GB RAM - Windows 8.1
-Java version - 1.8.0_05
-Network Switch/Link speed - 100 Mbps. -- This is the major culprit for the slow speed.
+
+ * Server - 2GHz Intel Core i7 16 GB 1600 DDR3 RAM - OSX 10.9.4
+ * Client - 2.7 GHz Intel(R) Core i5 8 GB RAM - Windows 8.1
+ * Java version - 1.8.0_05
+ * Network Switch/Link speed - 100 Mbps. -- This is the major culprit for the slow speed.
 
 The total round trip time depends on the network and i have seen average network lag of 300 Us to 9 ms per request for a communication bytesize of less than 1k for any of the above technologies we choose. This network lag begs for the need for compression, when the message size increases which i shall discuss in my next blog.
 
