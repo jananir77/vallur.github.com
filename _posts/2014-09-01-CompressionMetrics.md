@@ -211,12 +211,12 @@ Let us see different performance and compression metrics of the different flavor
 Below graph shows the size of compression for different compression algorithms. 
 
  ![compression size](/img/compresssize.png)
- 
+
+Below graph shows the time taken in under seconds for un-compressing bytes based on the size 
+
+ ![un-compression size](/img/compressiontime.png)
+
 Below graph shows the time taken in under seconds for compression based on the size
-
- ![compression size](/img/compressiontime.png)
-
-Below graph shows the time taken in under seconds for un-compressing bytes based on the size
 
  ![compression size](/img/uncompresstime.png)
  
