@@ -210,7 +210,7 @@ Let us see different performance and compression metrics of the different flavor
  
 The below graph shows the size of compression for different compression algorithms. 
 
- ![compression size](/img/compressionsize.png)
+ ![compression size](/img/compresssize.png)
 
 <div class="row">	
 	<div class="span9 column">
