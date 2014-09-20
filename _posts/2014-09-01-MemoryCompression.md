@@ -201,7 +201,7 @@ common code -
     }
 ```
  
- ![compression size](/img/)
+ ![compression size](/img/compresssize.png)
  
 
 <div class="row">	
