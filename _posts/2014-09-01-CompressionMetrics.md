@@ -201,8 +201,16 @@ common code -
     }
 ```
  
- ![compression size](/img/compresssize.png)
+There are two flavors of famous compression algorithms
+
+Huffman (Tree Based) - Snappy, Inflate/Defelate, GZip 
+lempel-ziv compression (Dictionary based) - LZ4, LZF  
  
+Let us see different performance and compression metrics of the different flavors listed above and their advantages
+ 
+The below graph shows the size of compression for different compression algorithms. 
+
+ ![compression size](/img/compressionsize.png)
 
 <div class="row">	
 	<div class="span9 column">
