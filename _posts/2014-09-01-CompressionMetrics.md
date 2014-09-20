@@ -208,9 +208,18 @@ lempel-ziv compression (Dictionary based) - LZ4, LZF
  
 Let us see different performance and compression metrics of the different flavors listed above and their advantages
  
-The below graph shows the size of compression for different compression algorithms. 
+Below graph shows the size of compression for different compression algorithms. 
 
  ![compression size](/img/compresssize.png)
+ 
+Below graph shows the time taken in under seconds for compression based on the size
+
+ ![compression size](/img/compressiontime.png)
+
+Below graph shows the time taken in under seconds for un-compressing bytes based on the size
+
+ ![compression size](/img/uncompresstime.png)
+ 
 
 <div class="row">	
 	<div class="span9 column">
