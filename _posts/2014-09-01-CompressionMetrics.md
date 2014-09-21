@@ -6,7 +6,7 @@ tags: java Compression SNAPI LZ4 GZIP metrics ZLIB
 year: 2014
 month: 09
 day: 2
-published: false
+published: true
 summary: Compression is used by a system to support many of the below advantages
 Send large packets over network faster.
 When the communication link is slower the data can be sent faster as we will be sending less number of bytes. 
