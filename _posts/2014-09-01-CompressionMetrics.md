@@ -7,7 +7,7 @@ year: 2014
 month: 09
 day: 2
 published: true
-summary: Compression is used by a system to support many of the below advantages Send large packets over network faster.When the communication link is slower the data can be sent faster as we will be sending less number of bytes. Compression would be generally advantageous if request or response size is more than 1000 bytes, to reduce time spent on the network. When we are constrained by space data can be compressed and stored. 
+summary: Compression is used by a system to support Sending large packets over network faster. When the communication link is slower the data can be sent faster as we will be sending less number of bytes. Compression would be generally advantageous if request or response size is more than 1000 bytes, to reduce time spent on the network. 
 
 image: clientserver.png
 ---
