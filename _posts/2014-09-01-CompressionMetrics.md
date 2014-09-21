@@ -6,8 +6,13 @@ tags: java Compression SNAPI LZ4 GZIP metrics ZLIB
 year: 2014
 month: 09
 day: 2
-published: false
-summary: Most of the pitfals of in-memory solutions is that they become expensive very fast as we try to store evrything in memory and keep 4 copies for redundency. Also modern applications dont behave properly while we try to use a huge heap size. All of the above would need to make a system elastically scalable and in the end unusable. 
+published: true
+summary: Compression is used by a system to support many of the below advantages
+
+* Send large packets over network faster.
+    * When the communication link is slower the data can be sent faster as we will be sending less number of bytes. 
+    * Compression would be generally advantageous if request or response size is more than 1000 bytes, to reduce time spent on the network. 
+* When we are constrained by space data can be compressed and stored. 
 
 image: clientserver.png
 ---
@@ -21,191 +26,33 @@ Compression is used by a system to support many of the below advantages
 * compression would also help while storing to a slow media.
 	* We typicaly use SSD or HDD for storing data for long term storage which are 72 to 150+ times slower than temporary storage RAM. This is the reason why most high transactional systems are more memory bound.
 
-Trying to compress and uncompress large number of bytes is counter productive so we would try to find a high bar and stick with that.
+Trying to compress and uncompress large number of bytes is counter productive so we would try to find a high bar and stick with that to understand the boundaries.
+
+There are two flavors of famous compression algorithms
+
+Huffman (Tree Based) - Inflate/Defelate, GZip 
+Lempel-ziv compression (Dictionary based) - LZ4, LZF, Snappy  
 
 Now for some metrics on the different code that can be used for compression and de-compression using different API. In the below examples we will be only looking at the fastest compression/de-compression with the different API available with their speed and size of compression.
 
 GZip code -
-
-```
-    public static byte[] serializeGZip(ByteBuffer buffer) throws IOException
-    {
-        ByteArrayOutputStream baos=new ByteArrayOutputStream();
-        GZIPOutputStream gzipOs=new GZIPOutputStream(baos);
-
-        try
-        {
-            byte[] bytes=new byte[4];
-            ByteBuffer intBuffer=ByteBuffer.wrap(bytes);
-            intBuffer.putInt(buffer.position());
-            gzipOs.write(intBuffer.array());
-            gzipOs.write(buffer.array(),0,buffer.position());
-            gzipOs.finish();
-            return baos.toByteArray();
-        }
-        finally
-        {
-            baos.close();
-            gzipOs.close();
-        }
-    }
-
-    public static byte[] deSerializeGZip(byte[] bytes) throws IOException
-    {
-        ByteArrayInputStream bais=new ByteArrayInputStream(bytes);
-        GZIPInputStream gzipIs=new GZIPInputStream(bais);
-
-        try {
-            byte[] intBytes = new byte[4];
-            gzipIs.read(intBytes);
-            ByteBuffer intBuffer=ByteBuffer.wrap(intBytes);
-            int length = intBuffer.getInt();
-
-            byte[] unCompressed = new byte[length];
-            gzipIs.read(unCompressed);
-
-            return unCompressed;
-        }
-        finally
-        {
-            bais.close();
-            gzipIs.close();
-        }
-    }
-```
+<script src="https://gist.github.com/vallur/dd9c25923548d0c3b4d1.js"></script>
 
 Snappy code -
-
-```
-    public static byte[] serializeSnappy(byte[] buffer,int position) throws IOException
-    {
-            return Snappy.rawCompress(buffer, position);
-    }
-
-    public static byte[] deSerializeSnappy(byte[] data) throws IOException
-    {
-            return Snappy.uncompress(data);
-    }
-```
+<script src="https://gist.github.com/vallur/0c0c552fd3e7f650570d.js"></script>
 
 LZF - ning compress code - 
-
-```
-    public static ByteBuffer serializelzf(ByteBuffer unCompressedBuffer) throws IOException
-    {
-        return ByteBuffer.wrap(LZFEncoder.encode(unCompressedBuffer.array()));
-    }
-
-    public static ByteBuffer deSerializelzf(ByteBuffer compressedBuffer) throws IOException
-    {
-        byte[] unCompressed=LZFDecoder.decode(compressedBuffer.array());
-        return ByteBuffer.wrap(unCompressed);
-    }
-```
+<script src="https://gist.github.com/vallur/b693eb7fa1cb84b71995.js"></script>
 
 Deflator/Inflator code - 
-```
-    final static Deflater d = new Deflater(Deflater.BEST_SPEED);
-    final static Inflater inf = new Inflater();
-     public static ByteBuffer serializeZLib(ByteBuffer compressedBuffer,ByteBuffer unCompressedBuffer) throws IOException
-    {
-        d.setInput(unCompressedBuffer.array(),0,unCompressedBuffer.position());
-        d.finish();
-
-        compressedBuffer=resetAllocation(compressedBuffer,unCompressedBuffer.position());
-
-        int length=d.deflate(compressedBuffer.array());
-        compressedBuffer.putInt(length,unCompressedBuffer.position());
-        compressedBuffer.position(length+4);
-        d.reset();
-        return compressedBuffer;
-    }
-
-    public static ByteBuffer deSerializeZLib(ByteBuffer compressedBuffer,ByteBuffer unCompressedBuffer)
-            throws IOException,DataFormatException
-    {
-        int uncompressedLength = getUncompressedLength(compressedBuffer);
-
-        resetAllocation(unCompressedBuffer,uncompressedLength);
-        inf.setInput(compressedBuffer.array(), 0, compressedBuffer.position() - 4);
-
-        inf.inflate(unCompressedBuffer.array(), 0, uncompressedLength);
-        unCompressedBuffer.position(uncompressedLength);
-        inf.reset();
-        return unCompressedBuffer;
-    }
-
-
-```
+<script src="https://gist.github.com/vallur/fa2b95100a51afa856d1.js"></script>
 
 LZ4 compression
-```
-	final static 	LZ4Factory 				m_factory = LZ4Factory.nativeInstance();
-	final static 	LZ4Compressor 			m_compressor = m_factory.fastCompressor();
-	final static LZ4FastDecompressor m_decompressor = m_factory.fastDecompressor();
-	
-public static ByteBuffer serializelz4(ByteBuffer unCompressedBuffer,ByteBuffer compressedBuffer) throws IOException
-    {
-        compressedBuffer=resetAllocation(compressedBuffer,unCompressedBuffer.position());
+<script src="https://gist.github.com/vallur/a39ff248e98be4c1146c.js"></script>
 
-        int length=m_compressor.compress(unCompressedBuffer.array(),0,unCompressedBuffer.position(),
-                              compressedBuffer.array(),0,unCompressedBuffer.position());
-        compressedBuffer.putInt(length,unCompressedBuffer.position());
-        compressedBuffer.position(length + 4);
-
-        byte[] bytes=new byte[compressedBuffer.position()];
-        System.arraycopy(compressedBuffer.array(),0,bytes,0,compressedBuffer.position());
-
-        ByteBuffer buffer=ByteBuffer.wrap(bytes);
-        buffer.position(compressedBuffer.position());
-        return buffer;
-    }
-
-    public static ByteBuffer deSerializelz4(ByteBuffer unCompressedBuffer,ByteBuffer compressedBuffer) throws IOException
-    {
-        int uncompressedLength = getUncompressedLength(compressedBuffer);
-
-        resetAllocation(unCompressedBuffer,uncompressedLength);
-        m_decompressor.decompress(compressedBuffer.array(), unCompressedBuffer.array(),uncompressedLength);
-
-        unCompressedBuffer.position(uncompressedLength);
-        return unCompressedBuffer;
-    }
-```
-
-common code -
-```
-	private static ByteBuffer resetAllocation(ByteBuffer buffer,int length)
-    {
-        if(buffer==null || buffer.capacity()<length)
-        {
-            buffer = ByteBuffer.allocate(length);
-        }
-        buffer.clear();
-        return buffer;
-    }
-
-    private static int getUncompressedLength(ByteBuffer compressedBuffer)
-    {
-        int pos=0;
-        if(compressedBuffer.position()==0)
-        {
-            pos=compressedBuffer.capacity()-4;
-        }
-        else
-        {
-            pos = compressedBuffer.position()-4;
-        }
-
-        return compressedBuffer.getInt(pos);
-    }
-```
- 
-There are two flavors of famous compression algorithms
-
-Huffman (Tree Based) - Snappy, Inflate/Defelate, GZip 
-lempel-ziv compression (Dictionary based) - LZ4, LZF  
- 
+common code used by all the above API's -
+<script src="https://gist.github.com/vallur/6b33e8f2db1bbbf3f26a.js"></script>
+  
 Let us see different performance and compression metrics of the different flavors listed above and their advantages
  
 Below graph shows the size of compression for different compression algorithms. 
@@ -220,6 +67,37 @@ Below graph shows the time taken in under seconds for compression based on the s
 
  ![compression size](/img/uncompresstime.png)
  
+My experience on compression API is all the implementations that are stream based are too slow as they will have to use frequent allocation of memory bytes which results in frequent movement of bytes to resize arrays 
+hence too much wastage of memory as well as processing. It is always better to preallocate in the begining and then shrink the buffer if needed resulting in speed of processing. 
+
+total compression and uncompression time would be close to =  O(k) + O(n) + O(t)
+- k<n and t<n
+- k is total size of compressed buffer
+- n is total size of uncompressed buffer
+- t is the total size of dictionary or repetitive values
+
+Compression using huffman algorithm is slow as it has to build the tree structure that represents the total buffer.
+
+Based on the above metrics 
+The order of preference for compression based on size would be 
+
+1. GZIP
+2. Deflate/Inflate
+3. Snappy
+4. LZF
+5. LZ4
+
+The order of preference for time taken for compression/decompression would be 
+
+1. LZ4
+2. Snappy
+3. Deflate/Inflate
+4. LZF
+5. GZIP
+
+LZ4 is the clear winner when it comes to speed and next winner is deflate/inflate API when saving space.
+
+We need to be careful while choosing Deflate/Inflate as we might not get the bang for while using a slow server, we may spend too much time on compression rather than network time if we use deflate/inflate compressions. Banyan can be configured to use LZ4, Snappy, Deflate/Inflate algorithms.
 
 <div class="row">	
 	<div class="span9 column">
