@@ -54,11 +54,11 @@ Below graph shows the size of compression for different compression algorithms.
 
  ![compression size](/img/posts/compresssize.png)
 
-Below graph shows the time taken in under seconds for un-compressing bytes based on the size 
+Below graph shows the time taken in underseconds but displayed in milliseconds for un-compressing bytes based on the size 
 
  ![un-compression size](/img/posts/compressiontime.png)
 
-Below graph shows the time taken in under seconds for compression based on the size
+Below graph shows the time taken in underseconds but displayed in milliseconds for compression based on the size
 
  ![compression size](/img/posts/uncompresstime.png)
  
