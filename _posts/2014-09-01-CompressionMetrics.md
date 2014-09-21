@@ -60,7 +60,7 @@ Below graph shows the time taken in under seconds for un-compressing bytes based
 
 Below graph shows the time taken in under seconds for compression based on the size
 
- ![compression size](/img//posts/uncompresstime.png)
+ ![compression size](/img/posts/uncompresstime.png)
  
 My experience on compression API is all the implementations that are stream based are too slow as they will have to use frequent allocation of memory bytes which results in frequent movement of bytes to resize arrays 
 hence too much wastage of memory as well as processing. It is always better to preallocate in the begining and then shrink the buffer if needed resulting in speed of processing. 
