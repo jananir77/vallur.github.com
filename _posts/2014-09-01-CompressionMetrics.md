@@ -9,7 +9,7 @@ day: 2
 published: true
 summary: Compression is used by a system to support Sending large packets over network faster. When the communication link is slower the data can be sent faster as we will be sending less number of bytes. Compression would be generally advantageous if request or response size is more than 1000 bytes, to reduce time spent on the network. 
 
-image: clientserver.png
+image: compresstime.png
 ---
 
 Compression is used by a system to support many of the below advantages
@@ -52,15 +52,15 @@ Let us see different performance and compression metrics of the different flavor
  
 Below graph shows the size of compression for different compression algorithms. 
 
- ![compression size](/img/compresssize.png)
+ ![compression size](/img/posts/compresssize.png)
 
 Below graph shows the time taken in under seconds for un-compressing bytes based on the size 
 
- ![un-compression size](/img/compressiontime.png)
+ ![un-compression size](/img/posts/compressiontime.png)
 
 Below graph shows the time taken in under seconds for compression based on the size
 
- ![compression size](/img/uncompresstime.png)
+ ![compression size](/img//postsuncompresstime.png)
  
 My experience on compression API is all the implementations that are stream based are too slow as they will have to use frequent allocation of memory bytes which results in frequent movement of bytes to resize arrays 
 hence too much wastage of memory as well as processing. It is always better to preallocate in the begining and then shrink the buffer if needed resulting in speed of processing. 
