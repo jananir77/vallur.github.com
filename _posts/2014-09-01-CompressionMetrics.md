@@ -65,7 +65,8 @@ Below graph shows the time taken in underseconds but displayed in milliseconds f
 My experience on compression API is all the implementations that are stream based are too slow as they will have to use frequent allocation of memory bytes which results in frequent movement of bytes to resize arrays 
 hence too much wastage of memory as well as processing. It is always better to preallocate in the begining and then shrink the buffer if needed resulting in speed of processing. 
 
-total compression and uncompression time would be close to =  O(k) + O(n) + O(t)
+total compression and uncompression time should be close to O(k) + O(n) + O(t)
+
 - k<n and t<n
 - k is total size of compressed buffer
 - n is total size of uncompressed buffer
